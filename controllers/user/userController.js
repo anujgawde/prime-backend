@@ -9,6 +9,7 @@ exports.fetchUserDetails = async (req, res) => {
 
 exports.fetchUserDocsAggregate = async (req, res) => {
   const body = req.body;
+
   // Aggregate documents month-wise
   const currentYear = new Date().getFullYear();
   const monthNames = [
@@ -38,6 +39,7 @@ exports.fetchUserDocsAggregate = async (req, res) => {
   const documentAggregate = await Documents.aggregate([
     {
       $match: {
+        user: body.userId,
         createAt: {
           $gte: new Date(`${currentYear}-01-01`),
           $lt: new Date(`${currentYear + 1}-01-01`),
@@ -58,6 +60,7 @@ exports.fetchUserDocsAggregate = async (req, res) => {
   const templateAggregate = await Templates.aggregate([
     {
       $match: {
+        user: body.userId,
         createAt: {
           $gte: new Date(`${currentYear}-01-01`),
           $lt: new Date(`${currentYear + 1}-01-01`),

@@ -9,6 +9,5 @@ exports.signup = async (req, res) => {
 
   const user = new Users(req.body);
   const result = await user.save();
-
   res.json(result);
 };
