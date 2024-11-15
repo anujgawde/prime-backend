@@ -1,5 +1,4 @@
 let mongoose = require("mongoose");
-const Schema = mongoose.Schema;
 
 let UsersSchema = new mongoose.Schema({
   _id: String,
