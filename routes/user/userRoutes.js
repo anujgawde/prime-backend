@@ -8,5 +8,6 @@ router.post(
   `/document-template-aggregate`,
   userController.fetchUserDocsAggregate
 );
+router.post(`/update-user-profile`, userController.updateUserProfile);
 
 module.exports = router;

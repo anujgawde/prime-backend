@@ -89,3 +89,20 @@ exports.fetchUserDocsAggregate = async (req, res) => {
 
   res.json(countByMonth);
 };
+
+exports.updateUserProfile = async (req, res) => {
+  const { id, ...rest } = req.body;
+  const updatedUser = await Users.findByIdAndUpdate(id, {
+    basicInformation: {
+      firstName: rest.firstName,
+      lastName: rest.lastName,
+      email: rest.email,
+    },
+    contactInformation: {
+      address: rest.address,
+      phoneNumber: rest.phoneNumber,
+    },
+  });
+
+  res.json(updatedUser);
+};

@@ -15,7 +15,6 @@ const documentRoutes = require("./routes/document/documentRoutes");
 const templateRoutes = require("./routes/template/templateRoutes");
 const userRoutes = require("./routes/user/userRoutes");
 const Templates = require("./models/templates/Templates");
-const dbUrl = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@instareports.wekv0nf.mongodb.net/`;
 
 const server = http.createServer(app);
 
@@ -29,7 +28,7 @@ const io = new Server(server, {
 });
 
 mongoose
-  .connect(dbUrl, {})
+  .connect(process.env.DB_CONNECTION_STRING, {})
   .then(() => console.log("Connected to MongoDB"))
   .catch((error) => console.error("Error connecting to MongoDB", error));
 
